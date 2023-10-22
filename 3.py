@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-#Fungsi untuk metode bagi dua dengan kriteria iterasi ke-n
+# Fungsi untuk metode bagi dua dengan kriteria iterasi ke-n
 def metode_bagi_dua_iterasi(f, a, b, tol, max_iter):
     iterasi = 0
-    while (b - a) / 2 > tol and iterasi < max_iter:
+    while (b - a) / 2 > tol and iterasi < max_iter: # Menggunakan Perulangan
         c = (a + b) / 2
         if f(c) == 0:
             return c
@@ -15,7 +15,7 @@ def metode_bagi_dua_iterasi(f, a, b, tol, max_iter):
         iterasi += 1
     return (a + b) / 2
 
-#Fungsi untuk menampilkan grafik akar
+# Fungsi untuk menampilkan grafik akar
 def plot_akar(f, a, b, akar):
     x = np.linspace(a, b, 100)
     y = [f(xi) for xi in x]
@@ -29,14 +29,14 @@ def plot_akar(f, a, b, akar):
     plt.grid()
     plt.show()
 
-#Input dari fungsi, batas akar, galat, dan iterasi maksimum
-input_fungsi = input("Masukkan fungsi f(x): ")
-a = float(input("Masukkan batas awal (a): "))
-b = float(input("Masukkan batas akhir (b): "))
-toleransi = float(input("Masukkan galat (toleransi): "))
-max_iter = int(input("Masukkan iterasi maksimum: "))
+# Input oleh user
+input_fungsi = input("Masukkan fungsi f(x): ") # Input fungsi 
+a = float(input("Masukkan batas awal (a): ")) # Input batas awal
+b = float(input("Masukkan batas akhir (b): ")) # Input batas akhir 
+toleransi = float(input("Masukkan galat (toleransi): ")) # Input galat
+max_iter = int(input("Masukkan iterasi maksimum: ")) # Input iterasi maksimum
 
-#Evaluasi fungsi dengan ekspresi lambdify
+# Evaluasi fungsi dengan ekspresi lambdify
 import sympy as sp
 x = sp.symbols('x')
 try:
@@ -46,6 +46,7 @@ except (sp.SympifyError, TypeError):
 else:
     akar = metode_bagi_dua_iterasi(f, a, b, toleransi, max_iter)
 
+    # Pengecekan
     if akar is not None:
         print(f"Akar hampiran dari {input_fungsi} adalah: {akar}")
         plot_akar(f, a, b, akar)
